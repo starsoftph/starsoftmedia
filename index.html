@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starsoft Tech — Innovating Utilities & Experiences</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        cyberdark: '#0a0b10',
+                        cybersurface: '#121420',
+                        cybercard: '#181b2e',
+                        cyberpurple: '#8b5cf6',
+                        cyberblue: '#3b82f6',
+                        cybercyan: '#06b6d4',
+                        cyberpink: '#ec4899',
+                        electricgold: '#fbbf24'
+                    },
+                    boxShadow: {
+                        'neon-glow': '0 0 25px rgba(139, 92, 246, 0.4)',
+                        'neon-cyan': '0 0 25px rgba(6, 182, 212, 0.4)',
+                        'card-hover': '0 10px 30px -10px rgba(139, 92, 246, 0.5)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0b10;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+        /* Custom animated background grid */
+        .bg-grid {
+            background-image: linear-gradient(to right, rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        /* Glassmorphism helpers */
+        .glass-panel {
+            background: rgba(24, 27, 46, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        .glass-nav {
+            background: rgba(10, 11, 16, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+        }
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #a78bfa 0%, #38bdf8 50%, #f472b6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-text-gold {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-grid antialiased selection:bg-cyberpurple selection:text-white">
+
+    <!-- NAVIGATION BAR -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyberpurple via-cyberblue to-cybercyan flex items-center justify-center shadow-neon-glow group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-meteor text-white text-lg"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-heading font-extrabold text-xl tracking-wider text-white">STARSOFT<span class="text-cybercyan">TECH</span></span>
+                    <span class="text-[10px] tracking-widest text-cyberpurple font-semibold uppercase">PH DEVELOPERS</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links & Quick Actions -->
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="#hero" class="text-sm font-medium text-gray-300 hover:text-cybercyan transition-colors">Home</a>
+                <a href="#products" class="text-sm font-medium text-gray-300 hover:text-cybercyan transition-colors">Products</a>
+                <a href="#team" class="text-sm font-medium text-gray-300 hover:text-cybercyan transition-colors">The Team</a>
+                <a href="#follow" class="text-sm font-medium text-gray-300 hover:text-cybercyan transition-colors">Community</a>
+            </nav>
+
+            <!-- CTA Buttons -->
+            <div class="hidden sm:flex items-center space-x-3">
+                <a href="http://hello-azalia.github.io/startimer" target="_blank" class="px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-lg bg-cybercard border border-cyberpurple/40 text-cybercyan hover:bg-cyberpurple/20 hover:border-cyberpurple transition-all shadow-sm">
+                    <i class="fa-solid fa-stopwatch mr-1.5"></i> StarTimer
+                </a>
+                <a href="https://www.facebook.com/starsoft.ph" target="_blank" class="px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-lg bg-gradient-to-r from-cyberpurple to-cyberblue text-white shadow-neon-glow hover:opacity-90 transition-opacity flex items-center">
+                    <i class="fa-brands fa-facebook mr-1.5"></i> Follow Us
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-gray-300 hover:text-white focus:outline-none p-2">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-cyberpurple/20 px-4 pt-3 pb-5 space-y-3">
+            <a href="#hero" class="block text-base font-medium text-gray-200 hover:text-cybercyan py-1">Home</a>
+            <a href="#products" class="block text-base font-medium text-gray-200 hover:text-cybercyan py-1">Products</a>
+            <a href="#team" class="block text-base font-medium text-gray-200 hover:text-cybercyan py-1">The Team</a>
+            <a href="#follow" class="block text-base font-medium text-gray-200 hover:text-cybercyan py-1">Community</a>
+            <div class="pt-2 flex flex-col space-y-2">
+                <a href="http://hello-azalia.github.io/startimer" target="_blank" class="w-full py-2 text-center text-xs font-semibold uppercase rounded-lg bg-cybercard border border-cyberpurple/40 text-cybercyan">
+                    <i class="fa-solid fa-stopwatch mr-1.5"></i> StarTimer
+                </a>
+                <a href="https://www.facebook.com/starsoft.ph" target="_blank" class="w-full py-2 text-center text-xs font-semibold uppercase rounded-lg bg-gradient-to-r from-cyberpurple to-cyberblue text-white shadow-neon-glow">
+                    <i class="fa-brands fa-facebook mr-1.5"></i> Follow Starsoft PH
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden">
+        <!-- Ambient Glowing Orbs -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyberpurple/20 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-72 h-72 bg-cybercyan/15 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full glass-panel border border-cyberpurple/30 mb-6 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-cybercyan animate-ping"></span>
+                <span class="text-xs font-medium text-cybercyan uppercase tracking-wider">Welcome to Starsoft Tech PH</span>
+            </div>
+            
+            <h1 class="font-heading font-black text-4xl sm:text-6xl md:text-7xl tracking-tight max-w-5xl mx-auto leading-tight sm:leading-none mb-6">
+                Crafting Next-Gen <span class="gradient-text">Portable Software</span> & Digital Utilities
+            </h1>
+            
+            <p class="text-base sm:text-xl text-gray-300 max-w-3xl mx-auto mb-10 font-normal leading-relaxed">
+                We are a passionate collective of Filipino developers, creators, and UI specialists building lightning-fast productivity tools, engaging user experiences, and innovative web utilities.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#products" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-cyberpurple via-cyberblue to-cybercyan text-white font-heading font-bold uppercase tracking-wider shadow-neon-glow hover:scale-105 transition-all text-sm flex items-center justify-center">
+                    <i class="fa-solid fa-rocket mr-2"></i> Explore Products
+                </a>
+                <a href="#team" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-panel text-gray-200 font-heading font-semibold uppercase tracking-wider hover:bg-cyberpurple/10 hover:border-cyberpurple/50 transition-all text-sm flex items-center justify-center">
+                    <i class="fa-solid fa-users mr-2 text-cybercyan"></i> Meet The Team
+                </a>
+            </div>
+
+            <!-- Stats / Quick Highlights -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <div class="glass-panel p-5 rounded-2xl border border-cyberpurple/20 text-center">
+                    <div class="font-heading font-extrabold text-3xl text-white mb-1">4+</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider">Elite Devs</div>
+                </div>
+                <div class="glass-panel p-5 rounded-2xl border border-cyberpurple/20 text-center">
+                    <div class="font-heading font-extrabold text-3xl text-cybercyan mb-1">2+</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider">Featured Apps</div>
+                </div>
+                <div class="glass-panel p-5 rounded-2xl border border-cyberpurple/20 text-center">
+                    <div class="font-heading font-extrabold text-3xl text-electricgold mb-1">100%</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider">Passion Driven</div>
+                </div>
+                <div class="glass-panel p-5 rounded-2xl border border-cyberpurple/20 text-center">
+                    <div class="font-heading font-extrabold text-3xl text-cyberpink mb-1">PH</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider">Tech Innovators</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS SECTION -->
+    <section id="products" class="py-20 relative bg-cyberdark/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-semibold uppercase tracking-widest text-cybercyan mb-3">Our Software Suite</h2>
+                <h3 class="font-heading font-extrabold text-3xl sm:text-4xl text-white">Featured Starsoft Products</h3>
+                <p class="text-gray-400 mt-3 text-sm sm:text-base">Explore our flagship web applications and portable system utilities crafted for high performance.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Product 1: StarTimer -->
+                <div class="glass-panel rounded-3xl p-8 border border-cyberpurple/30 hover:border-cybercyan transition-all duration-300 group flex flex-col justify-between shadow-lg hover:shadow-neon-cyan relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-cybercyan/10 rounded-full blur-2xl group-hover:bg-cybercyan/25 transition-all"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cybercyan to-cyberblue flex items-center justify-center text-white text-2xl shadow-md">
+                                <i class="fa-solid fa-stopwatch"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-cybercyan/10 text-cybercyan text-xs font-semibold uppercase tracking-wider border border-cybercyan/30">Café Management</span>
+                        </div>
+                        <h4 class="font-heading font-bold text-2xl text-white mb-3 group-hover:text-cybercyan transition-colors">StarTimer</h4>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                            A powerful café management, billing, and auto-shutdown system designed to streamline internet cafés and computer shop operations with effortless session control.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex items-center space-x-2 text-xs text-gray-400 mb-6">
+                            <span class="inline-block w-1.5 h-1.5 rounded-full bg-cybercyan"></span>
+                            <span>Café Management & Billing System</span>
+                        </div>
+                        <a href="http://hello-azalia.github.io/startimer" target="_blank" class="w-full py-3.5 px-6 rounded-xl bg-cybercyan/20 border border-cybercyan/50 text-cybercyan font-heading font-bold uppercase tracking-wider text-sm hover:bg-cybercyan hover:text-cyberdark transition-all flex items-center justify-center shadow-sm">
+                            <span>Launch StarTimer</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product 2: Boxstrap -->
+                <div class="glass-panel rounded-3xl p-8 border border-cyberpurple/30 hover:border-cyberpurple transition-all duration-300 group flex flex-col justify-between shadow-lg hover:shadow-neon-glow relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-cyberpurple/10 rounded-full blur-2xl group-hover:bg-cyberpurple/25 transition-all"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyberpurple to-cyberpink flex items-center justify-center text-white text-2xl shadow-md">
+                                <i class="fa-solid fa-box-archive"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-cyberpurple/10 text-cyberpurple text-xs font-semibold uppercase tracking-wider border border-cyberpurple/30">Roblox Utility</span>
+                        </div>
+                        <h4 class="font-heading font-bold text-2xl text-white mb-3 group-hover:text-cyberpurple transition-colors">Boxstrap</h4>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                            A Roblox Specialized Installer made portable and moveable—delivering a flexible bootstrapper and advanced utility suite for gamers and power users.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex items-center space-x-2 text-xs text-gray-400 mb-6">
+                            <span class="inline-block w-1.5 h-1.5 rounded-full bg-cyberpurple"></span>
+                            <span>Portable Roblox Specialized Installer</span>
+                        </div>
+                        <a href="http://hello-azalia.github.io/boxstrap" target="_blank" class="w-full py-3.5 px-6 rounded-xl bg-cyberpurple/20 border border-cyberpurple/50 text-cyberpurple font-heading font-bold uppercase tracking-wider text-sm hover:bg-cyberpurple hover:text-white transition-all flex items-center justify-center shadow-sm">
+                            <span>Launch Boxstrap</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MEET THE TEAM SECTION -->
+    <section id="team" class="py-24 relative">
+        <div class="absolute top-1/2 left-0 w-80 h-80 bg-cyberpurple/10 rounded-full blur-[140px] pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-semibold uppercase tracking-widest text-cyberpurple mb-3">The Masterminds</h2>
+                <h3 class="font-heading font-extrabold text-3xl sm:text-4xl text-white">Meet the Starsoft Team</h3>
+                <p class="text-gray-400 mt-3 text-sm sm:text-base">Brilliant minds driving technical excellence, suggestions, user interface magic, and game menus.</p>
+            </div>
+
+            <!-- Team Grid (4 Members) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Member 1: Pat Versola -->
+                <div class="glass-panel rounded-3xl p-6 border border-cyberpurple/30 flex flex-col justify-between hover:border-cyberpurple transition-all duration-300 group hover:shadow-card-hover">
+                    <div>
+                        <div class="relative w-24 h-24 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-cyberpurple via-cyberblue to-cybercyan p-1 shadow-neon-glow">
+                            <div class="w-full h-full bg-cybercard rounded-2xl flex items-center justify-center overflow-hidden">
+                                <i class="fa-solid fa-user-astronaut text-4xl text-cybercyan group-hover:scale-110 transition-transform"></i>
+                            </div>
+                            <span class="absolute -bottom-2 -right-2 bg-cyberdark border border-cyberpurple text-cybercyan text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">CEO</span>
+                        </div>
+                        <h4 class="font-heading font-bold text-xl text-white text-center mb-1">Pat Versola</h4>
+                        <div class="text-xs font-semibold text-cybercyan text-center uppercase tracking-wider mb-4">CEO & Lead Dev</div>
+                        <p class="text-gray-300 text-xs text-center leading-relaxed mb-6">
+                            Visionary leader and core architect driving the technical roadmap, software development, and overall direction of Starsoft Tech.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="https://www.facebook.com/therealcutie.2002" target="_blank" class="w-full py-2.5 px-4 rounded-xl bg-blue-600/20 border border-blue-500/40 text-blue-400 font-semibold text-xs uppercase tracking-wider hover:bg-blue-600 hover:text-white transition-all flex items-center justify-center space-x-2">
+                            <i class="fa-brands fa-facebook"></i>
+                            <span>Connect on FB</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Member 2: Dette Molina -->
+                <div class="glass-panel rounded-3xl p-6 border border-cyberpurple/30 flex flex-col justify-between hover:border-cyberpurple transition-all duration-300 group hover:shadow-card-hover">
+                    <div>
+                        <div class="relative w-24 h-24 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-cyberpink via-cyberpurple to-cyberblue p-1 shadow-neon-glow">
+                            <div class="w-full h-full bg-cybercard rounded-2xl flex items-center justify-center overflow-hidden">
+                                <i class="fa-solid fa-lightbulb text-4xl text-electricgold group-hover:scale-110 transition-transform"></i>
+                            </div>
+                            <span class="absolute -bottom-2 -right-2 bg-cyberdark border border-cyberpurple text-electricgold text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Expert</span>
+                        </div>
+                        <h4 class="font-heading font-bold text-xl text-white text-center mb-1">Dette Molina</h4>
+                        <div class="text-xs font-semibold text-electricgold text-center uppercase tracking-wider mb-4">Suggestion Specialist</div>
+                        <p class="text-gray-300 text-xs text-center leading-relaxed mb-6">
+                            Mastermind behind feature improvements, user feedback refinement, and strategic ideation to elevate software usability.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="https://www.facebook.com/profile.php?id=61570810894220" target="_blank" class="w-full py-2.5 px-4 rounded-xl bg-blue-600/20 border border-blue-500/40 text-blue-400 font-semibold text-xs uppercase tracking-wider hover:bg-blue-600 hover:text-white transition-all flex items-center justify-center space-x-2">
+                            <i class="fa-brands fa-facebook"></i>
+                            <span>Connect on FB</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Member 3: Michael Lopez -->
+                <div class="glass-panel rounded-3xl p-6 border border-cyberpurple/30 flex flex-col justify-between hover:border-cyberpurple transition-all duration-300 group hover:shadow-card-hover">
+                    <div>
+                        <div class="relative w-24 h-24 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-cyberblue via-cybercyan to-cyberpurple p-1 shadow-neon-glow">
+                            <div class="w-full h-full bg-cybercard rounded-2xl flex items-center justify-center overflow-hidden">
+                                <i class="fa-solid fa-microchip text-4xl text-cyberblue group-hover:scale-110 transition-transform"></i>
+                            </div>
+                            <span class="absolute -bottom-2 -right-2 bg-cyberdark border border-cyberpurple text-cyberblue text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Tech</span>
+                        </div>
+                        <h4 class="font-heading font-bold text-xl text-white text-center mb-1">Michael Lopez</h4>
+                        <div class="text-xs font-semibold text-cyberblue text-center uppercase tracking-wider mb-4">Tech Engineer</div>
+                        <p class="text-gray-300 text-xs text-center leading-relaxed mb-6">
+                            Technical powerhouse ensuring system stability, backend performance, optimization, and seamless digital infrastructure.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="https://www.facebook.com/deejaymhyke" target="_blank" class="w-full py-2.5 px-4 rounded-xl bg-blue-600/20 border border-blue-500/40 text-blue-400 font-semibold text-xs uppercase tracking-wider hover:bg-blue-600 hover:text-white transition-all flex items-center justify-center space-x-2">
+                            <i class="fa-brands fa-facebook"></i>
+                            <span>Connect on FB</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Member 4: Jhonsen Ationg -->
+                <div class="glass-panel rounded-3xl p-6 border border-cyberpurple/30 flex flex-col justify-between hover:border-cyberpurple transition-all duration-300 group hover:shadow-card-hover">
+                    <div>
+                        <div class="relative w-24 h-24 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-cyberpink via-cybercyan to-cyberpurple p-1 shadow-neon-glow">
+                            <div class="w-full h-full bg-cybercard rounded-2xl flex items-center justify-center overflow-hidden">
+                                <i class="fa-solid fa-gamepad text-4xl text-cyberpink group-hover:scale-110 transition-transform"></i>
+                            </div>
+                            <span class="absolute -bottom-2 -right-2 bg-cyberdark border border-cyberpurple text-cyberpink text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">UI / UX</span>
+                        </div>
+                        <h4 class="font-heading font-bold text-xl text-white text-center mb-1">Jhonsen Ationg</h4>
+                        <div class="text-xs font-semibold text-cyberpink text-center uppercase tracking-wider mb-4">UI Developer & Game Menu Specialist</div>
+                        <p class="text-gray-300 text-xs text-center leading-relaxed mb-6">
+                            Artistic UI craftsman specializing in stunning interactive layouts, modern web styling, and immersive game menu experiences.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="https://www.facebook.com/jhonsen.dave.d.ationg" target="_blank" class="w-full py-2.5 px-4 rounded-xl bg-blue-600/20 border border-blue-500/40 text-blue-400 font-semibold text-xs uppercase tracking-wider hover:bg-blue-600 hover:text-white transition-all flex items-center justify-center space-x-2">
+                            <i class="fa-brands fa-facebook"></i>
+                            <span>Connect on FB</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOLLOW / COMMUNITY SECTION -->
+    <section id="follow" class="py-20 relative bg-gradient-to-b from-cyberdark to-cybersurface border-t border-cyberpurple/20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="glass-panel rounded-3xl p-10 sm:p-14 border border-cyberpurple/40 shadow-neon-glow relative overflow-hidden">
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-cyberpurple/20 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="w-16 h-16 rounded-2xl bg-blue-600 flex items-center justify-center text-white text-3xl mx-auto mb-6 shadow-lg shadow-blue-500/30">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </div>
+
+                <h2 class="font-heading font-black text-3xl sm:text-4xl text-white mb-4">
+                    Stay Connected with <span class="gradient-text">Starsoft Tech</span>
+                </h2>
+                
+                <p class="text-gray-300 text-sm sm:text-base max-w-xl mx-auto mb-8 leading-relaxed">
+                    Follow our official Facebook page to get the latest updates on new software releases, product announcements, developer logs, and community events!
+                </p>
+
+                <a href="https://www.facebook.com/starsoft.ph" target="_blank" class="inline-flex items-center space-x-3 px-8 py-4 rounded-xl bg-blue-600 text-white font-heading font-bold uppercase tracking-wider text-sm hover:bg-blue-500 transition-all shadow-lg hover:shadow-blue-500/50 hover:scale-105">
+                    <i class="fa-brands fa-facebook text-lg"></i>
+                    <span>Follow Starsoft PH on Facebook</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-cyberdark py-12 border-t border-cyberpurple/10 text-center text-gray-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+            <div class="flex items-center space-x-2">
+                <div class="w-6 h-6 rounded-lg bg-cyberpurple flex items-center justify-center text-white text-xs">
+                    <i class="fa-solid fa-meteor"></i>
+                </div>
+                <span class="font-heading font-bold text-white text-sm tracking-wide">STARSOFT TECH PH</span>
+            </div>
+            <div>
+                &copy; 2026 Starsoft Tech. All rights reserved. Crafted with passion by the Starsoft Team.
+            </div>
+            <div class="flex space-x-4">
+                <a href="https://www.facebook.com/starsoft.ph" target="_blank" class="text-gray-400 hover:text-cybercyan transition-colors text-base"><i class="fa-brands fa-facebook"></i></a>
+                <a href="http://hello-azalia.github.io/startimer" target="_blank" class="text-gray-400 hover:text-cybercyan transition-colors text-base"><i class="fa-solid fa-stopwatch"></i></a>
+                <a href="http://hello-azalia.github.io/boxstrap" target="_blank" class="text-gray-400 hover:text-cyberpurple transition-colors text-base"><i class="fa-solid fa-box-archive"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle & Smooth Interaction -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
